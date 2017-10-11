@@ -1,0 +1,202 @@
+<html>
+<head>
+    <title>JavaSctipt</title>    
+</head>
+<body id="body" style="background:white">
+    
+    <h3 id="heading">JavaScript</h3>
+    
+    
+    <button onclick="buttonClick()">Click Me!</button>
+    <button onclick="changeText(this)">You Can Click Me Too!</button>
+    <button onclick="changeHeading()">Click To Change The Page Heading</button>
+    <button onclick="showDate()">Show Date!</button>
+    
+    
+    <font color=red family=tahoma><h3 id="dt"></h3></font>
+    
+    <img id="image" class="image" onmouseover="imageMouseOver(this)"   onmouseout="imageMouseOut(this)" src="https://netdna.webdesignerdepot.com/uploads/2013/09/featured33.jpg" width="50%">
+    
+    <p></p>
+    <b>Change the background color to: </b>
+    <select onchange="changeBackground(this)">
+        <option value="Red">Red</option>
+        <option value="Green">Green</option>
+        <option value="Yellow">Yellow</option>
+        <option value="White">White</option>
+    </select>
+    
+    
+    <h3>Form Validation</h3>
+    
+    <form method="post" action="anything.php" id="myForm" name="myForm" onsubmit="return validateFirstName()">
+        First Name: <input type=text id="firstName"/>
+        <font color=red><b id="star"></b></font>
+        <br/>
+        Last Name: <input type=text/> <br/>
+        <input type=submit>
+    
+    </form>
+    
+    
+    <script>
+        //Creating an Array
+    
+        var Numbers = ['one','two', 'three'];
+        
+        //Using a While Loop
+        console.log('USING A WHILE LOOP:')
+        var i=0;
+        while(i<Numbers.length){
+            console.log("The current number is: "+Numbers[i]);
+            i++;
+        }
+        
+        //Using a for loop
+        console.log('========================');
+        console.log('USING A FOR LOOP:');
+        
+        for(var ii=0; ii<Numbers.length;ii++){
+            console.log('The current number is: '+ii);
+        }
+        
+        console.log('========================');
+        console.log('USING A FOREACH LOOP:');
+        
+        
+        //Using forEach loop
+        Numbers.forEach(function (num){
+            console.log(num);
+        })
+        
+        //==========================================================
+        //Objects
+        
+        
+        console.log('========================');
+        console.log('OBJECT (Literal):');
+        
+        //Object Literal
+        
+        var Person = {
+            firstName: "John",
+            lastName: "Smith",
+            age: 100,
+            //An array inside the object
+            hobbies: ['football','basketball', 'sleeping','9gaging'],
+            //Another object inside the object
+            address: {
+                house: 800,
+                street: 'Aquafina Avenu',
+                city: 'Sleepy Town'
+            },
+            //A function inside the object
+            fullName: function(){
+                return this.firstName + " " + this.lastName;
+            }//END OF FUNCTION
+            
+            
+        } //END OF OBJECT
+        
+        console.log("First Name:" + Person.firstName);
+        console.log("Last Name:" + Person.lastName);
+        console.log("Age:" + Person.age);
+        console.log("The favorite hobby is: " + Person.hobbies[0]);
+        console.log("City: " + Person.address.city);
+        console.log("Full Name: " + Person.fullName());
+        
+        
+        //Object Contructor
+    
+        console.log('========================');
+        console.log('OBJECT (Constructor):');
+        
+        var bottle = new Object();
+        bottle.color='Blue';
+        bottle.height='20 cm';
+        bottle.content='Water';
+        bottle.description = function(){
+            return this.height + " of " + this.content;
+        }
+        
+        console.log("The description is: " + bottle.description());
+        
+        
+        //Object - Constructor Pattern
+        console.log('========================');
+        console.log('OBJECT (Constructor Pattern):');
+        
+        
+        function Door(color, width, height, knobColor){
+            this.color = color;
+            this.width = width;
+            this.height = height;
+            this.knobColor = knobColor;
+            this.dimentions = function(){
+                return "Dimentions: " + this.width + " X " + this.height;
+            }
+        }
+        
+        var frontDoor = new Door('Brown','2 m', '3 m', 'Silver');
+        var roomDoor = new Door('Black','1.5 m', '2 m', 'White');
+        
+        console.log("The color of the front door is: " + frontDoor.color);
+        console.log("Room door dimentions: " + roomDoor.dimentions());
+        
+  
+    </script>
+    
+    <script>
+    
+         //event handling stuff
+        
+        function buttonClick(){
+            alert('oh, you really clicked!');
+        }
+        
+        function changeText(id){
+            id.innerHTML='You Clicked!';
+        }
+        
+        function changeHeading(){
+            //var heading = document.getElementById('heading');
+            //heading.innerHTML = "Heading Changed Using JavaScript!";
+            
+            document.getElementById('heading').innerHTML="THE NEW TEXT!";
+        }
+        
+        function showDate(){
+            document.getElementById("dt").innerHTML=Date();
+        }
+        
+        function imageMouseOver(im){
+            im.src = "https://d30womf5coomej.cloudfront.net/ua/c3/f9/19/c2/74c64fdaf592494b83488be5347b8fc9.jpg";
+        }
+        
+        function imageMouseOut(im){
+            im.src="https://netdna.webdesignerdepot.com/uploads/2013/09/featured33.jpg";
+        }
+        
+        function changeBackground(item){
+            var body = document.getElementById('body');
+            body.style.background=item.value;
+        }
+        
+        function validateFirstName(){
+        
+            
+            var firstName = document.forms["myForm"]["firstName"].value;
+            if(firstName == null || firstName == ''){
+                document.getElementById("star").innerHTML="* Required Field";
+                return false;
+            }
+
+            
+        }
+    
+    
+    </script>
+    
+    
+</body>
+</html>
